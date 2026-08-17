@@ -20,8 +20,8 @@ export default function Projects() {
               key={project.name}
               className="flex flex-col rounded-lg border border-surface-border bg-surface p-6"
             >
-              <div className="mb-4 flex items-start justify-between gap-3">
-                <h3 className="text-lg font-semibold text-foreground">
+              <div className="mb-4 flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
+                <h3 className="min-w-0 text-lg font-semibold text-foreground">
                   {project.name}
                 </h3>
                 <span className="shrink-0 rounded-full border border-surface-border bg-background px-2.5 py-1 font-mono text-[11px] text-muted">
