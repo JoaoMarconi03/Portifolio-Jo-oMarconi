@@ -49,6 +49,7 @@ export type Project = {
   previewIcon: "store" | "courts";
   githubUrl?: string;
   liveUrl?: string;
+  demoCredentials?: { email: string; password: string };
 };
 
 export const projects: Project[] = [
@@ -70,7 +71,8 @@ export const projects: Project[] = [
     status: "Finalizando últimos ajustes",
     previewIcon: "courts",
     githubUrl: undefined,
-    liveUrl: undefined,
+    liveUrl: "https://maplayce.vercel.app/login",
+    demoCredentials: { email: "demo@teste.com", password: "Demo123" },
   },
 ];
 

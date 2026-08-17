@@ -41,8 +41,28 @@ export default function Projects() {
                 ))}
               </ul>
 
-              <div className="mb-5 flex flex-1 items-center justify-center rounded-md bg-foreground/95 py-10">
-                <PreviewIcon className="h-12 w-12 text-background/70" />
+              <div className="mb-5 flex-1 overflow-hidden rounded-md border border-surface-border bg-foreground/95">
+                {project.liveUrl ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block h-40 w-full overflow-hidden"
+                    aria-label={`Abrir demo de ${project.name}`}
+                  >
+                    <iframe
+                      src={project.liveUrl}
+                      title={`Prévia de ${project.name}`}
+                      loading="lazy"
+                      tabIndex={-1}
+                      className="pointer-events-none h-[400%] w-[400%] origin-top-left scale-[0.25] border-0"
+                    />
+                  </a>
+                ) : (
+                  <div className="flex h-40 items-center justify-center">
+                    <PreviewIcon className="h-12 w-12 text-background/70" />
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-4 text-sm font-medium">
@@ -71,6 +91,13 @@ export default function Projects() {
                   <span className="text-muted/50">Demo em breve</span>
                 )}
               </div>
+
+              {project.demoCredentials ? (
+                <p className="mt-3 rounded-md border border-surface-border bg-background px-3 py-2 font-mono text-xs text-muted">
+                  Login demo: {project.demoCredentials.email} · Senha:{" "}
+                  {project.demoCredentials.password}
+                </p>
+              ) : null}
             </article>
           );
         })}
