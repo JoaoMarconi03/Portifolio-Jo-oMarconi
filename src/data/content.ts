@@ -5,6 +5,8 @@ export const profile = {
   email: "jvmarconi03@gmail.com",
   linkedin: "https://www.linkedin.com/in/jo%C3%A3o-marconi-48a351231/",
   github: "https://github.com/JoaoMarconi03",
+  photoUrl: "/profile.jpg",
+  orbitFocus: ["Frontend", "Backend", "Dados", "Automação"] as const,
   heroHighlights: [
     { icon: "code", text: "Desenvolvendo interfaces e APIs com React, Next.js e Node.js" },
     { icon: "school", text: "Cursando Engenharia Mecânica (10º semestre) na UNISO" },
@@ -12,6 +14,24 @@ export const profile = {
     { icon: "search", text: "Buscando minha primeira oportunidade como desenvolvedor" },
   ] as const,
 };
+
+export const marqueeTech: string[] = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "APIs REST",
+  "PostgreSQL",
+  "Supabase",
+  "Prisma",
+  "Docker",
+  "Git",
+  "GitHub",
+  "Python",
+];
 
 export type SkillGroup = {
   title: string;

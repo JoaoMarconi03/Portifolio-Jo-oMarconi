@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TbCode, TbSchool, TbBulb, TbSearch } from "react-icons/tb";
 import type { IconType } from "react-icons";
 import { profile } from "@/data/content";
@@ -8,6 +9,21 @@ const highlightIcons: Record<string, IconType> = {
   bulb: TbBulb,
   search: TbSearch,
 };
+
+const initials = profile.name
+  .split(" ")
+  .filter((part) => part.length > 0)
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join("")
+  .toUpperCase();
+
+const orbitPositions = [
+  "left-1/2 top-0 -translate-x-1/2 -translate-y-1/2",
+  "left-full top-1/2 -translate-x-1/2 -translate-y-1/2",
+  "left-1/2 top-full -translate-x-1/2 -translate-y-1/2",
+  "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2",
+];
 
 export default function Hero() {
   return (
@@ -22,9 +38,8 @@ export default function Hero() {
         </p>
 
         <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          {profile.name}
+          {profile.role}
         </h1>
-        <p className="mt-2 font-mono text-lg text-accent">{profile.role}</p>
 
         <ul className="mt-6 max-w-xl space-y-3">
           {profile.heroHighlights.map((item) => {
@@ -57,35 +72,48 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="w-full max-w-sm flex-1 md:max-w-md">
-        <div className="rounded-lg border border-surface-border bg-surface font-mono text-sm shadow-2xl shadow-black/40">
-          <div className="flex items-center gap-1.5 border-b border-surface-border px-4 py-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+      <div className="mx-auto w-full max-w-xs flex-1 px-11 md:max-w-sm md:px-8">
+        <div className="relative mx-auto aspect-square w-full">
+          {/* anéis orbitando, estilo "sistema solar" */}
+          <div className="animate-orbit-ring-slow absolute inset-0 rounded-full border border-dashed border-accent/25" />
+          <div className="animate-orbit-ring-fast absolute inset-6 rounded-full border border-dashed border-accent/15" />
+
+          {/* rótulos orbitando ao redor da foto */}
+          <div className="animate-orbit-labels absolute inset-[6%]">
+            {profile.orbitFocus.map((label, index) => (
+              <div
+                key={label}
+                className={`absolute flex items-center gap-1.5 ${orbitPositions[index % orbitPositions.length]}`}
+              >
+                <div className="animate-orbit-labels-counter flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  <span className="whitespace-nowrap rounded-full border border-surface-border bg-surface px-2 py-0.5 font-mono text-[10px] tracking-wide text-muted">
+                    {label.toUpperCase()}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
-          <pre className="overflow-x-auto px-4 py-4 leading-relaxed text-muted">
-            <code>
-              <span className="text-accent">const</span> dev = {"{"}
-              {"\n"}
-              {"  "}nome: <span className="text-foreground">
-                &quot;João Victor Marconi&quot;
-              </span>,{"\n"}
-              {"  "}foco: [<span className="text-foreground">
-                &quot;React&quot;
-              </span>, <span className="text-foreground">
-                &quot;Next.js&quot;
-              </span>, <span className="text-foreground">
-                &quot;Node.js&quot;
-              </span>],{"\n"}
-              {"  "}formação: <span className="text-foreground">
-                &quot;Eng. Mecânica&quot;
-              </span>,{"\n"}
-              {"  "}usaIA: <span className="text-accent">true</span>,{"\n"}
-              {"}"}
-              {";"}
-            </code>
-          </pre>
+
+          {/* foto de perfil */}
+          <div className="absolute inset-[14%] overflow-hidden rounded-full border-2 border-surface bg-surface shadow-2xl shadow-black/40 ring-1 ring-accent/30">
+            {profile.photoUrl ? (
+              <Image
+                src={profile.photoUrl}
+                alt={profile.name}
+                fill
+                sizes="(min-width: 768px) 320px, 260px"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-accent-soft to-surface">
+                <span className="font-mono text-4xl font-semibold text-accent">
+                  {initials}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

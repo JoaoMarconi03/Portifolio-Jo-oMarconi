@@ -21,8 +21,7 @@ export default function Header() {
           href="#topo"
           className="font-mono text-sm font-medium tracking-tight text-foreground"
         >
-          <span className="text-accent">{"~/"}</span>
-          {profile.name.split(" ")[0].toLowerCase()}
+          {profile.name}
         </a>
 
         <nav className="hidden gap-6 md:flex">

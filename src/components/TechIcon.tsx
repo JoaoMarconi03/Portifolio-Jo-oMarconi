@@ -42,6 +42,10 @@ const techMap: Record<string, TechMeta> = {
   "APIs REST": { icon: TbApi, color: "#2dd4bf" },
 };
 
+export function getTechIcon(name: string): IconType | undefined {
+  return techMap[name]?.icon;
+}
+
 export function TechBadge({ name }: { name: string }) {
   const meta = techMap[name];
   const Icon = meta?.icon;

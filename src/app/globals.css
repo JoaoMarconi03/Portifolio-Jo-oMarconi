@@ -42,3 +42,60 @@ body {
   background: var(--accent-soft);
   color: var(--foreground);
 }
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit-ring-slow {
+  animation: orbit-spin 50s linear infinite;
+}
+
+.animate-orbit-ring-fast {
+  animation: orbit-spin-reverse 32s linear infinite;
+}
+
+.animate-orbit-labels {
+  animation: orbit-spin-reverse 50s linear infinite;
+}
+
+.animate-orbit-labels-counter {
+  animation: orbit-spin 50s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit-ring-slow,
+  .animate-orbit-ring-fast,
+  .animate-orbit-labels,
+  .animate-orbit-labels-counter,
+  .animate-marquee {
+    animation: none;
+  }
+}
