@@ -81,7 +81,8 @@ export const projects: Project[] = [
     status: "Finalizando últimos ajustes",
     previewIcon: "store",
     githubUrl: undefined,
-    liveUrl: undefined,
+    liveUrl: "https://vitri-git-main-joao-marconi-s-projects.vercel.app/",
+    demoCredentials: { email: "demo@vitri.com", password: "DemoVitri123" },
   },
   {
     name: "Gerenciamento de Quadras",

@@ -20,8 +20,8 @@ export default function Projects() {
               key={project.name}
               className="flex flex-col rounded-lg border border-surface-border bg-surface p-6"
             >
-              <div className="mb-4 flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
-                <h3 className="min-w-0 text-lg font-semibold text-foreground">
+              <div className="mb-4 flex flex-col items-start gap-2">
+                <h3 className="text-lg font-semibold text-foreground">
                   {project.name}
                 </h3>
                 <span className="shrink-0 rounded-full border border-surface-border bg-background px-2.5 py-1 font-mono text-[11px] text-muted">
@@ -47,7 +47,7 @@ export default function Projects() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative block h-40 w-full overflow-hidden"
+                    className="relative block aspect-[16/10] w-full overflow-hidden"
                     aria-label={`Abrir demo de ${project.name}`}
                   >
                     <iframe
@@ -55,11 +55,12 @@ export default function Projects() {
                       title={`Prévia de ${project.name}`}
                       loading="lazy"
                       tabIndex={-1}
+                      scrolling="no"
                       className="pointer-events-none h-[400%] w-[400%] origin-top-left scale-[0.25] border-0"
                     />
                   </a>
                 ) : (
-                  <div className="flex h-40 items-center justify-center">
+                  <div className="flex aspect-[16/10] items-center justify-center">
                     <PreviewIcon className="h-12 w-12 text-background/70" />
                   </div>
                 )}
